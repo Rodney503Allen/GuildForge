@@ -14,13 +14,23 @@ import townRoutes from "./town.routes";
 import inventoryRoutes from "./inventory.routes";
 import combatRoutes from "./combat.routes";
 import chatRoutes from "./chat.routes";
+import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: path.resolve(__dirname, "..", ".env"),
+});
 
 
 
 import { db } from "./db";
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 
 // =======================
