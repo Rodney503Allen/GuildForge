@@ -22,14 +22,7 @@ dotenv.config({
 });
 
 
-app.get("/test-db", async (req, res) => {
-  try {
-    const [rows] = await db.query("SELECT NOW() AS time");
-    res.json({ connected: true, rows });
-  } catch (err: any) {
-    res.json({ connected: false, error: err.message });
-  }
-});
+
 
 
 import { db } from "./db";
@@ -41,7 +34,14 @@ app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-
+app.get("/test-db", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT NOW() AS time");
+    res.json({ connected: true, rows });
+  } catch (err: any) {
+    res.json({ connected: false, error: err.message });
+  }
+});
 // =======================
 // MIDDLEWARE
 // =======================
